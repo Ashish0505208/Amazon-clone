@@ -107,6 +107,9 @@ export function loadProductsFetch(){
 
     console.log('load products');
   })
+  //.catch(()=>{
+  //   console.log('error');
+  // });
 
   return promise;
 }
