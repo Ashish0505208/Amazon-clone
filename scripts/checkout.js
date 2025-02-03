@@ -1,55 +1,32 @@
-import {renderOrderSummary} from './checkout/orderSummary.js';
-import {renderPaymentSummary} from './checkout/paymentSummary.js';
-import { loadproducts,loadProductsFetch } from '../data/products.js';
-import { loadcart } from '../data/cart.js';
+import { renderOrderSummary } from './checkout/orderSummary.js';
+import { renderPaymentSummary } from './checkout/paymentSummary.js';
+import { loadProductsFetch } from '../data/products.js';
+import { loadCart } from '../data/cart.js';
 
-// import '../data/backend-practice.js';
-// import '../data/cart-class.js';
-
-async function loadPage(){
+async function loadPage() {
     try {
+        // Load products and cart data
         await loadProductsFetch();
         await new Promise((resolve, reject) => {
-            loadcart((err) => {
-                if (err) reject(err);
-                else resolve();
-            });
+            loadCart((err) => (err ? reject(err) : resolve()));
         });
 
+        // Render the order and payment summaries
+        renderOrderSummary();
+        renderPaymentSummary();
+
+        return 'Page loaded successfully';
     } catch (error) {
         console.error('Error loading page:', error);
+        throw error; // Re-throw the error for further handling if needed
     }
-    
-
-    renderOrderSummary();
-    renderPaymentSummary();
-
-    return 'value2';
 }
 
-loadPage().then((value)=>{
-    console.log('next step');
-    console.log(value);
-})
-
-
-// new Promise((resolve) =>{
-//     loadproducts(() =>{
-//         resolve();
-//     });
-// }).then(() =>{
-//     return new Promise ((resolve) =>{
-//         loadcart(() =>{
-//             resolve();
-//         });
-//     });
-// }).then(() =>{
-//     renderOrderSummary();
-//     renderPaymentSummary();
-// });
-
-
-// loadproducts(() =>{
-//     renderOrderSummary();
-//     renderPaymentSummary();
-// })
+// Execute the loadPage function and handle the result
+loadPage()
+    .then((result) => {
+        console.log('Next step:', result);
+    })
+    .catch((error) => {
+        console.error('Failed to load page:', error);
+    });
