@@ -27,10 +27,8 @@ async function loadPage(){
     return 'value2';
 }
 
-loadPage().then((value)=>{
-    console.log('next step');
-    console.log(value);
-})
+loadPage();
+
 
 
 // new Promise((resolve) =>{
@@ -53,3 +51,20 @@ loadPage().then((value)=>{
 //     renderOrderSummary();
 //     renderPaymentSummary();
 // })
+
+export function updateCartQuantity() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Sum up all product quantities
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+
+    // Update the checkout items count dynamically
+    document.querySelector('.checkout-header-middle-section .return-to-home-link')
+      .innerHTML = `${totalQuantity} items`;
+    
+  }
+  
+  // Call updateCartQuantity on page load to ensure the cart count is updated
+  updateCartQuantity();
+  
