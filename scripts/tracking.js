@@ -2,9 +2,14 @@ import { orders } from "../data/orders.js";
 import { getDeliveryStatus } from "./utils/deliverystatus.js";
 import { productMatch } from "./utils/productmatch.js";
 
-const urlparams = new URLSearchParams(window.location.search);
-const orderid = urlparams.get("order");
-const productid = urlparams.get("product");
+// const urlparams = new URLSearchParams(window.location.search);
+// const orderid = urlparams.get("order");
+// const productid = urlparams.get("product");
+const hashParams = new URLSearchParams(window.location.hash.substring(1));
+const orderid = hashParams.get("order");
+const productid = hashParams.get("product");
+console.log(orderid, productid);
+
 
 console.log(`Order ID: ${orderid}, Product ID: ${productid}`);
 
