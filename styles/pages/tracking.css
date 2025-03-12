@@ -47,9 +47,35 @@
 
 .progress-bar {
   height: 100%;
-  width: 50%;
+  width: 0%; /* Start at 0 for animation */
   background-color: green;
   border-radius: 50px;
+  transition: width 1.5s ease-in-out; /* Smooth animation */
+}
+
+/* Progress stages with animation */
+@keyframes progress-animation {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.progress-stage-1 {
+  width: 20%;
+  animation: progress-animation 1.5s ease-in-out;
+}
+
+.progress-stage-2 {
+  width: 60%;
+  animation: progress-animation 1.5s ease-in-out;
+}
+
+.progress-stage-3 {
+  width: 100%;
+  animation: progress-animation 1.5s ease-in-out;
 }
 
 /* Responsive Styles */

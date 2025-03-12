@@ -51,16 +51,14 @@ orders.forEach(order => {
             </div>
 
             <div class="product-actions">
-              <a href="tracking.html">
-                <button class="track-package-button button-secondary">
+              <a>
+                <button class="track-package-button button-secondary order${order.id} product${productmatch.id}">
                   Track package
                 </button>
               </a>
             </div>
           </div>
         </div>
-
-        
       </div>
       `
           });
@@ -76,7 +74,32 @@ function updateCartQuantity() {
     const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
   
     document.querySelector('.cart-quantity').innerHTML = totalQuantity;
-  }
+}
   
   // Call updateCartQuantity on page load to ensure the cart count is updated
   updateCartQuantity();
+
+
+  document.querySelectorAll(".track-package-button").forEach(button => {
+    button.addEventListener("click", (event) => {
+        const classList = event.currentTarget.classList;
+        const orderClass = [...classList].find(cls => cls.startsWith("order"));
+        const productClass = [...classList].find(cls => cls.startsWith("product"));
+        const orderId = orderClass ? orderClass.replace("order", "") : null;
+        const productId = productClass ? productClass.replace("product", "") : null;
+
+
+        if (!orderId || !productId) {
+            console.error("Error: Missing orderId or productId!");
+            return;
+        }
+
+        const trackingUrl = new URL("tracking.html", window.location.origin);
+        trackingUrl.searchParams.append("order", orderId);
+        trackingUrl.searchParams.append("product", productId);
+
+        //console.log("Redirecting to:", trackingUrl.href); // Debugging
+        window.location.href = trackingUrl.href;
+    });
+});
+
