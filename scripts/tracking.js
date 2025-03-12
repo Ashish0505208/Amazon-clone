@@ -11,7 +11,6 @@ const productid = urlparams.get("product");//local run end
 // const hashParams = new URLSearchParams(window.location.hash.substring(1));
 // const orderid = hashParams.get("order");
 // const productid = hashParams.get("product");
-// console.log(orderid, productid);
 //github supported end
 
 console.log(`Order ID: ${orderid}, Product ID: ${productid}`);
@@ -44,7 +43,7 @@ orders.forEach(order => {
                 trackingHTML += `
                 <div class="order-tracking">
                     <a class="back-to-orders-link link-primary" href="orders.html">
-                        View all orders
+                        All Orders
                     </a>
 
                     <div class="delivery-date">
