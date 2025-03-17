@@ -13,7 +13,7 @@ const productid = urlparams.get("product");//local run end
 // const productid = hashParams.get("product");
 //github supported end
 
-console.log(`Order ID: ${orderid}, Product ID: ${productid}`);
+// console.log(`Order ID: ${orderid}, Product ID: ${productid}`);
 
 let trackingHTML = "";
 const currentDate = new Date(); // Get today's date
@@ -92,7 +92,6 @@ setTimeout(() => {
         bar.style.transition = "width 1.5s ease-in-out";
     });
 }, 100);
-
 
 
 // document.addEventListener("DOMContentLoaded", () => {
