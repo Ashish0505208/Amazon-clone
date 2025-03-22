@@ -1,1 +1,1 @@
-access the project live at https://ashish-amazon-clone.netlify.app
+access the project live at https://ashishr-amazon-clone.netlify.app
